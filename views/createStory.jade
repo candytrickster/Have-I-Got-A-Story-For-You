@@ -1,0 +1,14 @@
+extends layout
+
+block content
+
+    h3 Create Story
+    form(id='storyForm', method='POST', action='/create')
+        .form-group
+            label(for='title') Title
+            input#title.form-control(type='text', placeholder='Enter Title')
+        .form-group
+            label(for='content') Story
+            textarea.form-control(rows='10')
+        .form-group
+            button.btn.btn-default(type='submit', id='enter') Create
