@@ -1,6 +1,8 @@
 var express = require('express'),
     jade = require('jade'),
-    path = require('path');
+    path = require('path'),
+    bodyParser = require('body-parser'),
+    mongoose = require('mongoose');
 
 var app = express(); 
 
@@ -8,6 +10,8 @@ app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
 app.use(require('stylus').middleware(__dirname + '/public'));
 app.use(express.static(path.join(__dirname + '/public'))); 
+
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 //home
 app.get('/', function (req, res) {
