@@ -3,9 +3,9 @@ var express = require('express'),
     path = require('path'),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
-    index = require('./controller/index_controller.js'),
-    user = require('./controller/user_controller.js'),
-    story = require('./controller/story_controller.js');
+    index = require('./controllers/index_controller.js'),
+    user = require('./controllers/user_controller.js'),
+    story = require('./controllers/story_controller.js');
 
 var app = express(); 
 
@@ -18,7 +18,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.get('/', index.home);
 app.get('/login', user.login);
-app.get('/signup', user.signup);
+app.get('/register', user.register);
 app.get('/story', story.index);
 app.get('/create', story.create);
 
