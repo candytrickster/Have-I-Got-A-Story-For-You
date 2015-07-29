@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname + '/public')));
 
 //home
 app.get('/', function (req, res) {
-    res.render('home');
+    res.render('index');
 });
 
 //login screen
@@ -21,7 +21,7 @@ app.get('/login', function (req, res) {
 
 //sign up screen
 app.get('/signup', function (req, res) {
-    res.render('signup');
+    res.render('create');
 });
 
 //view a clicked story
@@ -31,7 +31,7 @@ app.get('/story', function (req, res) {
 
 //create a new story
 app.get('/create', function (req, res) {
-    res.render('create');
+    res.render('createStory');
 });
 
 
