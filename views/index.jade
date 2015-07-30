@@ -8,7 +8,8 @@ block content
                     tr
                         th Title
                         th Story
-                        each s in stories
-                            th #{s.title}
-                            th #{s.content}
+                    each story in stories
+                        tr
+                            td #{story.title}
+                            td #{story.content}
                     

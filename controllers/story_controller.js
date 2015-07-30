@@ -1,6 +1,6 @@
 var mongoose = require('mongoose'),
-    crypto = require('crypto'),
-    Schema = mongoose.Schema;
+    crypto = require('crypto');
+
 
 mongoose.connect('mongodb://localhost/data');
 
@@ -10,7 +10,7 @@ db.once('open', function (callback) {
     
 });
 
-var StorySchema = new Schema({
+var StorySchema = mongoose.Schema({
     title: String,
     content: String,
 });
@@ -22,7 +22,6 @@ exports.home = function(req, res) {
         if(err) return console.error(err);
         res.render('index', {title: 'Story list', stories: story});
 });
-    res.render('index');
 };
 
 exports.index = function(req, res) {
