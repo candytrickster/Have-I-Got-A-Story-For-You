@@ -15,10 +15,11 @@ app.use(express.static(path.join(__dirname + '/public')));
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-app.get('/', index.home);
+app.get('/', story.home); //app.get('/', index.home);
 app.get('/login', user.login);
 app.get('/register', user.register);
 app.get('/story', story.index);
 app.get('/create', story.create);
+app.post('/create', urlencodedParser, story.add_story);
 
 app.listen(3000);

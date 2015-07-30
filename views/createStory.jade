@@ -6,9 +6,9 @@ block content
     form(id='storyForm', method='POST', action='/create').storyForm
         .form-group
             label(for='title') Title
-            input#title.form-control(type='text', placeholder='Enter Title').titleInput
+            input#title.form-control(type='text', placeholder='Enter Title', name='title').titleInput
         .form-group
             label(for='content') Story
-            textarea.form-control(rows='10')
+            textarea#content.form-control(rows='10', name='content')
         .form-group
             button.btn.btn-primary(type='submit', id='enter') Create
