@@ -1,0 +1,27 @@
+html {
+    text-align: center;
+}
+/*form {
+    width: 80%;
+    margin: auto;
+}*/
+.loginForm {
+    width: 15%;
+    margin: auto;
+}
+.register {
+    width: 15%;
+    margin: auto;
+}
+.storyForm {
+    width: 25%;
+    margin: auto;
+}
+.navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+    vertical-align: top;
+}
+.navbar .navbar-nav {
+    text-align: center;
+}

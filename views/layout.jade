@@ -2,11 +2,16 @@ doctype
 html
     head
         title Story Time
-        link(link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css")
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css")
+        link(rel='stylesheet', type='text/css', href='/styles/style.css')
     body
         h1 Story Time
-        nav
-            a(href='/')#current Home
-            a(href='/login') Login
-            a(href='/register') Sign Up
+        nav.navbar.navbar-default.navbar-static-top
+            ul.nav.navbar-nav
+                li
+                    a(href='/') Home
+                li
+                    a(href='/login') Login
+                li
+                    a(href='/create') Sign Up
         block content

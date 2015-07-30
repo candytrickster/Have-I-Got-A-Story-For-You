@@ -2,7 +2,8 @@ extends layout
 
 block content
 
-    form
+    h3 Login
+    form.loginForm
       .form-group
         label(for='userName') Username:
         input#userName.form-control(type='text', placeholder='Username')
@@ -13,4 +14,4 @@ block content
         label
           input(type='checkbox')
           |  Remember Me
-      button.btn.btn-default(type='submit') Login
+      button.btn.btn-primary(type='submit') Login
