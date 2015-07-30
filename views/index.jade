@@ -4,3 +4,12 @@ block content
 
     h1 Story Title
         h3 Story Content
+    table(class='table')
+                    tr
+                        th Title
+                        th Story
+                    each story in stories
+                        tr
+                            td #{story.title}
+                            td #{story.content}
+                    
