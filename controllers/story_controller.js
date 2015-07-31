@@ -1,6 +1,4 @@
-var mongoose = require('mongoose'),
-    crypto = require('crypto');
-
+var mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/data');
 

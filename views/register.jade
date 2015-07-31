@@ -3,21 +3,14 @@ extends layout
 block content
 
     h3 Create Account
-<<<<<<< Updated upstream
-    form(id='createAccount', method='POST').register
-        .form-group
-            label(for='userName') Username
-            input#userName.form-control(type='text', placeholder='Username')
-=======
     form(id='createAccount', method='post', action='/register')
->>>>>>> Stashed changes
         .form-group
             label(for='email') Email address
-            input#email.form-control(type='email', placeholder='Email')
+            input#email.form-control(type='email', name='email', placeholder='Email')
         .form-group
             label(for='username') Username
-            input#userName.form-control(type='text', placeholder='Username')
+            input#userName.form-control(type='text', name='username', placeholder='Username')
         .form-group
             label(for='password') Password
-            input#password.form-control(type='password', placeholder='Password')
+            input#password.form-control(type='password', name='password', placeholder='Password')
         button.btn.btn-primary(type='submit') Create Account
