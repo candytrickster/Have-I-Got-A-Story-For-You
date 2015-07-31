@@ -1,3 +1,3 @@
-exports.home = function(req, res) {
+exports.renderHome = function(req, res) {
     res.render('index');
 };

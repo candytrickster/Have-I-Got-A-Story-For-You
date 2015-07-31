@@ -24,11 +24,11 @@ exports.home = function(req, res) {
 });
 };
 
-exports.index = function(req, res) {
+exports.renderIndex = function(req, res) {
     res.render('story');
 };
 
-exports.create = function(req, res) {
+exports.renderCreate = function(req, res) {
     res.render('createStory');
 };
 
