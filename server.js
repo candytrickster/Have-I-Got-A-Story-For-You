@@ -18,9 +18,11 @@ app.get('/', story.home);
 app.get('/login', user.renderLogin);
 app.get('/register', user.renderRegister);
 app.post('/register', urlencodedParser, user.register);
-app.get('/story', story.renderIndex);
+app.get('/story/:id', urlencodedParser, story.renderIndex);
 app.get('/create', story.renderCreate);
 app.post('/create', urlencodedParser, story.add_story);
+
+//app.get('/append/:id', story.append);
 
 
 app.listen(3000);

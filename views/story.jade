@@ -2,5 +2,11 @@ extends layout
 
 block content
 
-    h1 Here is the title of the story.
-        h3 This is the story page, a specific story will be shown here.
+    each story in stories
+        h1 #{story.title}
+        h3 #{story.content}
+        
+        
+    button(class="btn", data-action="bea", onclick="location.href='story';") Add To
+    button(class="btn", data-action="bea", onclick="location.href='story';") Finish
+    
