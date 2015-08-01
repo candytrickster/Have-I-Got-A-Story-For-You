@@ -1,0 +1,14 @@
+extends layout
+
+block content
+
+    h1 Finish It!
+    each story in stories
+        h2 #{story.title}
+        h3 #{story.content}
+        form(id='storyForm', method='POST', action='/story/finish/'+story.id).storyForm
+            .form-group
+                label(for='new_content') Story
+                textarea#content.form-control(rows='10', name='new_content')
+            .form-group
+                button.btn.btn-primary(type='submit', id='enter') Finish
