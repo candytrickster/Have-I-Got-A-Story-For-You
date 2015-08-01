@@ -22,7 +22,10 @@ app.get('/story/:id', urlencodedParser, story.renderIndex);
 app.get('/create', story.renderCreate);
 app.post('/create', urlencodedParser, story.add_story);
 
-//app.get('/append/:id', story.append);
+app.get('/story/append/:id', urlencodedParser, story.renderAppend);
+app.post('/story/append/:id', urlencodedParser, story.append);
 
+app.get('/story/finish/:id', urlencodedParser, story.renderFinish);
+app.post('/story/finish/:id', urlencodedParser, story.finish);
 
 app.listen(3000);

@@ -57,5 +57,75 @@ exports.add_story = function(req, res)
 };
 
 
+exports.renderAppend = function(req,res)
+{
+    Story.find({ id: req.params.id}, function (err, story) {
+        if(err) return console.error(err);
+        console.log('this is the id : '+req.params.id)
+        res.render('append_form', {title: 'Story', stories: story});
+});
+};
+
+
+exports.append = function(req,res)
+{
+    Story.findOne({id: req.params.id}, function(err, story) {
+        if (err) return console.error(err);
+        new_story = story.content + ' ' + req.body.new_content;
+        story.content = new_story;
+
+        story.save(function (err, story) {
+            if (err) return console.error(err);
+            console.log('story updated');
+        });
+    });
+    res.render('success');
+};
+
+
+exports.renderFinish = function(req,res)
+{
+    Story.find({ id: req.params.id}, function (err, story) {
+        if(err) return console.error(err);
+        console.log('this is the id : '+req.params.id)
+        res.render('finish_form', {title: 'Story', stories: story});
+});
+};
+
+
+exports.finish = function(req,res)
+{
+    Story.findOne({id: req.params.id}, function(err, story) {
+        if (err) return console.error(err);
+        new_story = story.content + ' ' + req.body.new_content;
+        story.content = new_story;
+        story.finished = true;
+
+        story.save(function (err, story) {
+            if (err) return console.error(err);
+            console.log('story updated');
+        });
+    });
+    res.render('success');
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

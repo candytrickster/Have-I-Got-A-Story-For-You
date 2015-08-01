@@ -5,8 +5,9 @@ block content
     each story in stories
         h1 #{story.title}
         h3 #{story.content}
-        
-        
-    button(class="btn", data-action="bea", onclick="location.href='story';") Add To
-    button(class="btn", data-action="bea", onclick="location.href='story';") Finish
+        if story.finished
+            p This story has been finished
+        else
+            button(class="btn", data-action="bea", onclick="location.href='/story/append/#{story.id}';") Add To
+            button(class="btn", data-action="bea", onclick="location.href='/story/finish/#{story.id}';") Finish
     
