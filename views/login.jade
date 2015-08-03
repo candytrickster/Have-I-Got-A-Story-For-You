@@ -3,10 +3,10 @@ extends layout
 block content
 
     h3.storyTitle Login
-    form.loginForm
+    form.loginForm(method='post', action='/login')
       .form-group
         label(for='userName') Username
-        input#userName.form-control(type='text', placeholder='Username')
+        input#userName.form-control(type='text', name='username', placeholder='Username')
       .form-group
         label(for='password') Password
         input#password.form-control(type='password', name='password', placeholder='Password')
