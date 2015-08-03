@@ -8,6 +8,7 @@ block content
         if story.finished
             p.finishedStory This story has been finished
         else
-            button(class="btn", data-action="bea", onclick="location.href='/story/append/#{story.id}';").btn-primary.addButton Add To
-            button(class="btn", data-action="bea", onclick="location.href='/story/finish/#{story.id}';").btn-primary.finishButton Finish
+            if user
+                button(class="btn", data-action="bea", onclick="location.href='/story/append/#{story.id}';").btn-primary.addButton Add To
+                button(class="btn", data-action="bea", onclick="location.href='/story/finish/#{story.id}';").btn-primary.finishButton Finish
     
