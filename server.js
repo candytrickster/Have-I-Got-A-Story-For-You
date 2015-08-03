@@ -27,7 +27,7 @@ passport.use(new LocalStrategy(function (username, password, done) {
                     message: 'Unknown user'
                 });
             }
-            if (!user.validPassword(password)) {
+            if (!user.authenticate(password)) {
                 return done(null, false, {
                     message: 'Invalid password'
                 });
@@ -41,24 +41,21 @@ passport.serializeUser(function(user, done) {
     });
 
 passport.deserializeUser(function(id, done) {
-    User.findOne(
-        {_id: id},
-        '-password',
-        function(err, user) {
-            done(err, user);
-        }
-    );
+    User.findById(id, function(err, user) {
+        done(err, user);
+    });
 });
 
-app.use(passport.initialize());
-app.use(passport.session());
 var session = require('express-session');
 app.use(session({
     saveUninitialized: true,
     resave: true,
     secret: 'OurSuperSecretCookieSecret'
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(flash());
+app.use(bodyParser.json());
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
 app.use(express.static(path.join(__dirname + '/public'))); 
@@ -66,7 +63,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.get('/', story.home);
 app.get('/login', user.renderLogin);
-app.post('/login', passport.authenticate('local', {
+app.post('/login', urlencodedParser, passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true

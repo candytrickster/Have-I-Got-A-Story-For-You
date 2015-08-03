@@ -11,11 +11,14 @@ html
                 li
                     a(href='/') Home
                 li
-                    a(href='/login') Login
-                li
                     a(href='/register') Sign Up
                 li
                     a(href='/create') Create Story
-                li
-                    a(href='/logout') Logout
+                    
+                if user                
+                    li
+                        a(href='/logout') Logout
+                else
+                    li
+                        a(href='/login') Login
         block content
