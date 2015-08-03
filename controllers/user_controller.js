@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
     crypto = require('crypto'),
+    passport = require('passport'),
     Schema = mongoose.Schema;
 
 mongoose.connect('mongodb://localhost/StoryTime');
@@ -16,27 +17,117 @@ var UserSchema = new Schema({
     password: String
 });
 
+UserSchema.pre('save',
+    function(next) {
+        if (this.password) {
+            var md5 = crypto.createHash('md5');
+            this.password = md5.update(this.password).digest('hex');
+        }
+
+        next();
+    }
+);
+
+UserSchema.methods.authenticate = function(password) {
+    var md5 = crypto.createHash('md5');
+    md5 = md5.update(password).digest('hex');
+
+    return this.password === md5;
+};
+
 var User = mongoose.model('User', UserSchema);
 
-exports.renderLogin = function(req, res) {
-    res.render('login');
+passport.serializeUser(function (user, done) {
+    done(null, user.id);
+});
+
+passport.deserializeUser(function (id, done) {
+    User.findOne({
+            _id: id
+        },
+        '-password',
+        function (err, user) {
+            done(err, user);
+        }
+    );
+});
+
+
+
+var getErrorMessage = function(err) {
+    var message = '';
+    if (err.code) {
+        switch (err.code) {
+            case 11000:
+            case 11001:
+            default:
+                message = 'Something went wrong';
+        }
+    }
+    else {
+        for (var errName in err.errors) {
+            if (err.errors[errName].message)
+                message = err.errors[errName].message;
+        }
+    }
+
+    return message;
 };
 
-exports.renderRegister = function(req, res) {
-    res.render('register');
+exports.renderLogin = function(req, res, next) {
+    if (!req.user) {
+        res.render('login', {
+            title: 'Log-in Form',
+            messages: req.flash('error') || req.flash('info')
+        });
+    }
+    else {
+        return res.redirect('/');
+    }
 };
 
-exports.register = function(req, res, next){
-    var newUser = new User(req.body);
-    console.log(req.body);
-    newUser.save(function(err) {
-        if(err) {
-            return next(err);
-        }
-        else{
-            res.redirect("/");
-        }
-    });
+exports.renderRegister = function(req, res, next) {
+    if (!req.user) {
+        res.render('register', {
+            title: 'Register Form',
+            messages: req.flash('error')
+        });
+    }
+    else {
+        return res.redirect('/');
+    }
 };
+
+exports.register = function(req, res, next) {
+    if (!req.user) {
+        var user = new User(req.body);
+        var message = null;
+        user.provider = 'local';
+        user.save(function(err) {
+            if (err) {
+                var message = getErrorMessage(err);
+                req.flash('error', message);
+                return res.redirect('/register');
+            }
+
+            req.login(user, function(err) {
+                if (err)
+                    return next(err);
+
+                return res.redirect('/');
+            });
+        });
+    }
+    else {
+        return res.redirect('/');
+    }
+};
+
+exports.logout = function(req, res) {
+    req.logout();
+    res.redirect('/');
+};
+
+require('../strategies/local.js')();
 
 
