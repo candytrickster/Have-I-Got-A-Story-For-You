@@ -34,7 +34,7 @@ exports.renderIndex = function(req, res) {
     Story.find({ id: req.params.id}, function (err, story) {
         if(err) return console.error(err);
         console.log('this is the id : '+req.params.id)
-        res.render('story', {title: 'Story', stories: story});
+        res.render('story', {title: 'Story', stories: story, user: req.user ? req.user.username : ''});
 });
 };
 
@@ -43,7 +43,7 @@ exports.renderCreate = function(req, res) {
 //    if (err) throw err;
 //    console.log('Deleted story');
 //});
-    res.render('createStory');
+    res.render('createStory', {user: req.user ? req.user.username : ''});
 };
 
 //post for creating a story
@@ -57,7 +57,7 @@ exports.add_story = function(req, res)
         console.log('Story added')
     });
     console.log(req.body.title);
-    res.render('success');
+    res.render('success', {user: req.user ? req.user.username : ''});
 };
 
 
@@ -66,7 +66,7 @@ exports.renderAppend = function(req,res)
     Story.find({ id: req.params.id}, function (err, story) {
         if(err) return console.error(err);
         console.log('this is the id : '+req.params.id)
-        res.render('append_form', {title: 'Story', stories: story});
+        res.render('append_form', {title: 'Story', stories: story, user: req.user ? req.user.username : ''});
 });
 };
 
@@ -83,7 +83,7 @@ exports.append = function(req,res)
             console.log('story updated');
         });
     });
-    res.render('success');
+    res.render('success', {user: req.user ? req.user.username : ''});
 };
 
 
@@ -92,7 +92,7 @@ exports.renderFinish = function(req,res)
     Story.find({ id: req.params.id}, function (err, story) {
         if(err) return console.error(err);
         console.log('this is the id : '+req.params.id)
-        res.render('finish_form', {title: 'Story', stories: story});
+        res.render('finish_form', {title: 'Story', stories: story, user: req.user ? req.user.username : ''});
 });
 };
 
@@ -110,7 +110,7 @@ exports.finish = function(req,res)
             console.log('story updated');
         });
     });
-    res.render('success');
+    res.render('success', {user: req.user ? req.user.username : ''});
 };
 
 
