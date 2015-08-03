@@ -60,6 +60,7 @@ body {
 }
 .storyTitle {
     font-family: 'Oswald';
+    margin-top: 8px;
 }
 .storyBody {
     font-family: 'Arvo';
@@ -104,4 +105,7 @@ body {
     height: 70px;
     background-color: #424F5A;
     margin-top: 25px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
 }
