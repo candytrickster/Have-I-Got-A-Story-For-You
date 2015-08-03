@@ -2,10 +2,10 @@ extends layout
 
 block content
 
-    h1 Finish It!
+    h1.storyTitle Finish It!
     each story in stories
-        h2 #{story.title}
-        h3.storyContent.left #{story.content}
+        h2.storyTitle #{story.title}
+        h3.storyContent #{story.content}
         form(id='storyForm', method='POST', action='/story/finish/'+story.id).storyForm
             .form-group
                 label(for='new_content') Story

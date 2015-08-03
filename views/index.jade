@@ -2,13 +2,20 @@ extends layout
 
 block content
 
-    table(class='table').storyHome
-                    tr
-                        th Title
-                        th Story
-                    each story in stories
-                        tr
-                            td #{story.title}
-                            td #{story.content}
-                            td 
-                                    button(class="btn", data-action="bea", onclick="location.href='story/#{story.id}';").btn-primary View
+    each story in stories
+        h1.storyTitle #{story.title}
+        p.storyBody.storyContent.home #{story.content}
+        button(class="btn", data-action="bea", onclick="location.href='story/#{story.id}';").btn-primary View
+
+    //- Not removing incase we fall into errors dealing with this
+    
+    //- table(class='table').storyHome
+    //-                 tr
+    //-                     th Title
+    //-                     th Story
+    //-                 each story in stories
+    //-                     tr
+    //-                         td.storyTitle #{story.title}
+    //-                         td.storyBody #{story.content}
+    //-                         td 
+    //-                                 button(class="btn", data-action="bea", onclick="location.href='story/#{story.id}';").btn-primary View

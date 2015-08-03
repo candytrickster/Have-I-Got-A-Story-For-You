@@ -1,6 +1,11 @@
 html {
+    background-color: #cfd8dc;
     min-width: 800px;
     text-align: center;
+
+}
+body {
+    background-color: #cfd8dc;
 }
 .navbar-default {
     background-color: #424F5A;
@@ -54,11 +59,19 @@ html {
     margin-right: auto;
 }
 .storyTitle {
+    font-family: 'Oswald';
+}
+.storyBody {
+    font-family: 'Arvo';
+}
+.home {
+    font-size: 16px;
 }
 .storyContent {
     width: 80%;
     margin-right: auto;
     margin-left: auto;
+    font-family: 'Arvo';
 }
 .addButton {
     margin: 5px;
@@ -66,25 +79,29 @@ html {
 .finishButton {
     margin: 5px;
 }
-/*h3 {
-    width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-}*/
 .btn {
+    margin-top: 5px;
+    margin-bottom: 10px;
     border-radius: 0;
     background-color: #3f51b5;
 }
 .btn:hover {
     background-color: #1a237e;
 }
+.finishedStory {
+    font-size: 15pt;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
 .footer-text {
     position: relative;
-    top: 15px;
+    top: 25px;
+    font-family: 'Arvo';
+    font-size: 15px;
 }
 #footer {
     color: #fff;
-    height: 50px;
+    height: 70px;
     background-color: #424F5A;
     margin-top: 25px;
 }
