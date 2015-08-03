@@ -37,23 +37,6 @@ UserSchema.methods.authenticate = function(password) {
 
 var User = mongoose.model('User', UserSchema);
 
-passport.serializeUser(function (user, done) {
-    done(null, user.id);
-});
-
-passport.deserializeUser(function (id, done) {
-    User.findOne({
-            _id: id
-        },
-        '-password',
-        function (err, user) {
-            done(err, user);
-        }
-    );
-});
-
-
-
 var getErrorMessage = function(err) {
     var message = '';
     if (err.code) {
@@ -128,6 +111,5 @@ exports.logout = function(req, res) {
     res.redirect('/');
 };
 
-require('../strategies/local.js')();
 
 
