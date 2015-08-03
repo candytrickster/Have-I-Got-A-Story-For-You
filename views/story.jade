@@ -6,7 +6,7 @@ block content
         h1.storyTitle #{story.title}
         h3.storyContent #{story.content}
         if story.finished
-            p This story has been finished
+            p.finishedStory This story has been finished
         else
             button(class="btn", data-action="bea", onclick="location.href='/story/append/#{story.id}';").btn-primary.addButton Add To
             button(class="btn", data-action="bea", onclick="location.href='/story/finish/#{story.id}';").btn-primary.finishButton Finish
