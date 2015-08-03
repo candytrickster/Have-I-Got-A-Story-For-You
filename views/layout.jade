@@ -1,9 +1,10 @@
 doctype
 html
     head
-        title Story Time
+        - var title = title || "Story Time"
+        title #{title}
         link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css")
-        link(rel='stylesheet', type='text/css', href='/styles/style.css')
+        link(rel='stylesheet' href='/styles/style.css' type='text/css')
     body
         h1 Story Time
         nav.navbar.navbar-default.navbar-static-top
@@ -22,3 +23,6 @@ html
                     li
                         a(href='/login') Login
         block content
+        block foot
+            #footer
+                p.footer-text Copyright &#169; 2015

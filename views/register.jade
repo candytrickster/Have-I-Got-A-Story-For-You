@@ -3,7 +3,7 @@ extends layout
 block content
 
     h3 Create Account
-    form(id='createAccount', method='post', action='/register')
+    form(id='createAccount', method='post', action='/register').register
         .form-group
             label(for='email') Email address
             input#email.form-control(type='email', name='email', placeholder='Email')
