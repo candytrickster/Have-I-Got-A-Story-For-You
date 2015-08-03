@@ -18,11 +18,15 @@ var StorySchema = mongoose.Schema({
 var Story = mongoose.model('Story', StorySchema);
 
 //the home page with all the stories
-exports.home = function(req, res) {
+exports.home = function (req, res) {
     Story.find(function (err, story) {
-        if(err) return console.error(err);
-        res.render('index', {title: 'Story list', stories: story});
-});
+        if (err) return console.error(err);
+        res.render('index', {
+            title: 'Story list',
+            stories: story,
+            user: req.user ? req.user.username : ''
+        });
+    });
 };
 
 //the individual stories
