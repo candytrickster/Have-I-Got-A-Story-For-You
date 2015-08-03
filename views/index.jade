@@ -2,9 +2,7 @@ extends layout
 
 block content
 
-    h1 Story Title
-        h3 Story Content
-    table(class='table')
+    table(class='table').storyHome
                     tr
                         th Title
                         th Story
@@ -13,5 +11,4 @@ block content
                             td #{story.title}
                             td #{story.content}
                             td 
-                                    button(class="btn", data-action="bea", onclick="location.href='story/#{story.id}';") View
-                    
+                                    button(class="btn", data-action="bea", onclick="location.href='story/#{story.id}';").btn-primary View
