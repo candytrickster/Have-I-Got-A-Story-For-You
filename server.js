@@ -4,14 +4,51 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
     passport = require('passport'),
-    LocalStrategy = require('passport-local'),
     flash = require('connect-flash'),
     index = require('./controllers/index_controller.js'),
     user = require('./controllers/user_controller.js'),
-    local = require('./strategies/local.js'),
-    story = require('./controllers/story_controller.js');
+    User = require('mongoose').model('User'),
+    story = require('./controllers/story_controller.js'),
+    LocalStrategy = require('passport-local').Strategy;
 
 var app = express();
+
+passport.use(new LocalStrategy(function (username, password, done) {
+    User.findOne({
+            username: username
+        },
+        function (err, user) {
+        console.log("here");
+            if (err) {
+                return done(err);
+            }
+            if (!user) {
+                return done(null, false, {
+                    message: 'Unknown user'
+                });
+            }
+            if (!user.validPassword(password)) {
+                return done(null, false, {
+                    message: 'Invalid password'
+                });
+            }
+            return done(null, user);
+        }
+    );
+}));
+passport.serializeUser(function(user, done) {
+        done(null, user.id);
+    });
+
+passport.deserializeUser(function(id, done) {
+    User.findOne(
+        {_id: id},
+        '-password',
+        function(err, user) {
+            done(err, user);
+        }
+    );
+});
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -29,7 +66,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.get('/', story.home);
 app.get('/login', user.renderLogin);
-app.post('/login', passport.authenticate(local, {
+app.post('/login', passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true
